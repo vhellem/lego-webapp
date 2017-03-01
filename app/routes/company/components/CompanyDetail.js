@@ -2,7 +2,9 @@
 
 import React from 'react';
 import styles from './Company.css';
+import moment from 'moment';
 import LoadingIndicator from 'app/components/LoadingIndicator';
+import { EventItem } from 'app/routes/events/components/EventList';
 import Image from 'app/components/Image';
 import InfoBubble from 'app/components/InfoBubble';
 import { Link } from 'react-router';
@@ -60,6 +62,41 @@ const CompanyDetail = ({ company }: Props) => {
 
       <div className={styles.description}>
         <p>{company.description}</p>
+      </div>
+
+      <div>
+        <h3 className={styles.headings}>Kommende arrangementer</h3>
+        {company.events
+          .filter((event) => (moment().isSameOrBefore(event.startTime)))
+          .map((event) => (
+            <EventItem
+              key={event.id}
+              event={event}
+            />
+        ))}
+      </div>
+
+      <div>
+        <h3 className={styles.headings}>Jobbannonser</h3>
+        <ul>
+          <li>joblisting 1</li>
+          <li>joblisting 2</li>
+          <p>...</p>
+        </ul>
+      </div>
+
+      <div>
+        <h3 className={styles.headings}>Tidligere Events</h3>
+        {company.events
+          .filter((event) => (moment().isAfter(event.startTime)))
+          .sort((a, b) => (moment(b.startTime) - moment(a.startTime)))
+          .map((event) => (
+            <EventItem
+              className={styles.eventItem}
+              key={event.id}
+              event={event}
+            />
+        ))}
       </div>
     </div>
   );

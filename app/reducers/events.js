@@ -135,7 +135,10 @@ function transformRegistration(registration) {
 export const selectEvents = createSelector(
   state => state.events.byId,
   state => state.events.items,
-  (eventsById, eventIds) => eventIds.map(id => transformEvent(eventsById[id]))
+  (eventsById, eventIds) =>
+    eventIds
+      .map(id => transformEvent(eventsById[id]))
+      .sort((a, b) => a.startTime - b.startTime)
 );
 
 export const selectEventById = createSelector(
@@ -143,10 +146,7 @@ export const selectEventById = createSelector(
   (state, props) => props.eventId,
   (eventsById, eventId) => {
     const event = eventsById[eventId];
-    if (event) {
-      return transformEvent(event);
-    }
-    return {};
+    return event ? transformEvent(event) : {};
   }
 );
 

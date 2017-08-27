@@ -36,11 +36,6 @@ export function fetching(fetchType?: ActionTypeObject) {
   };
 }
 
-function arrayOf(value) {
-  if (Array.isArray(value)) return value;
-  return [value];
-}
-
 function merge(old, updated) {
   return mergeWith(
     {},
@@ -67,7 +62,7 @@ export function entities(key: string) {
     return {
       ...state,
       byId: merge(state.byId, result),
-      items: union(state.items, arrayOf(Object.keys(result).map(Number))),
+      items: union(state.items, Object.keys(result).map(Number)),
       actionGrant: union(state.actionGrant, action.payload.actionGrant || [])
     };
   };

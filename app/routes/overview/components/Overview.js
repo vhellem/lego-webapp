@@ -1,5 +1,5 @@
 import styles from './Overview.css';
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import Helmet from 'react-helmet';
 import { Link } from 'react-router';
 import Time from 'app/components/Time';
@@ -108,7 +108,7 @@ const OverviewItem = ({ event, showImage }) =>
     </Flex>
   </Flex>;
 
-export default class Overview extends Component {
+export default class Overview extends PureComponent {
   state = {
     eventsToShow: 4
   };

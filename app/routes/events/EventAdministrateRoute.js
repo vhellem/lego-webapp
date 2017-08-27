@@ -66,8 +66,7 @@ const mapDispatchToProps = dispatch => {
 
 export default compose(
   dispatched(
-    ({ params: { eventId } }, dispatch) =>
-      dispatch(fetchAdministrate(Number(eventId))),
+    ({ params: { eventId } }, dispatch) => dispatch(fetchAdministrate(eventId)),
     {
       componentWillReceiveProps: false
     }

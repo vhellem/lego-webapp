@@ -22,10 +22,9 @@ import {
   ImageUploadField
 } from 'app/components/Form';
 import { Flex } from 'app/components/Layout';
-import { eventTypes, styleForEvent } from '../../utils.js';
+import { eventTypes } from '../../utils.js';
 import Admin from '../Admin';
 import Tooltip from 'app/components/Tooltip';
-import cx from 'classnames';
 
 type Props = {
   eventId: string,
@@ -81,7 +80,6 @@ function EventEditor({
   if (error) {
     return <div>{error.message}</div>;
   }
-  const styleType = styleForEvent(event.eventType);
 
   return (
     <div className={styles.root}>
@@ -102,14 +100,7 @@ function EventEditor({
           aspectRatio={20 / 6}
           img={event.cover}
         />
-        <Flex wrap alignItems="center" justifyContent="space-between">
-          <Field
-            name="title"
-            placeholder="Tittel"
-            className={styles.title}
-            component={TextInput.Field}
-          />
-        </Flex>
+        <Flex wrap alignItems="center" justifyContent="space-between" />
         <Field
           name="description"
           placeholder="Kalenderbeskrivelse"
@@ -119,9 +110,16 @@ function EventEditor({
         <Flex wrap className={styles.mainRow}>
           <Flex column className={styles.description}>
             <Field
+              name="title"
+              fieldStyle={{ padding: '20px', marginBottom: 0 }}
+              placeholder="Tittel"
+              className={styles.title}
+              component={TextInput.Field}
+            />
+            <Field
               name="text"
               component={EditorField}
-              placeholder="Write your event here..."
+              placeholder="Arrangementsbeskrivelse"
               className={styles.descriptionEditor}
               uploadFile={uploadFile}
             />
@@ -129,7 +127,7 @@ function EventEditor({
               {(event.tags || []).map((tag, i) => <Tag key={i} tag={tag} />)}
             </Flex>
           </Flex>
-          <Flex column className={cx(styles.meta, styleType)}>
+          <Flex column className={styles.meta}>
             <Field
               name="eventType"
               label="Hva"

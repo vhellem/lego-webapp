@@ -6,10 +6,9 @@
 
 .title {
   font-size: 24px;
-  color: var(--lego-font-color);
   font-family: Raleway, 'Helvetica Neue', Arial, sans-serif;
   font-weight: 700;
-  padding-left: 0;
+  margin-bottom: 0;
   composes: editShadow from 'app/styles/utilities.css';
 }
 
@@ -31,6 +30,11 @@
 
 .description {
   composes: description;
+  composes: editShadow from 'app/styles/utilities.css';
+}
+
+.meta {
+  composes: meta;
   composes: editShadow from 'app/styles/utilities.css';
 }
 

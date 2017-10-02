@@ -20,6 +20,7 @@ import { Flex } from 'app/components/Layout';
 import { EVENT_TYPE_TO_STRING, styleForEvent } from '../../utils.js';
 import Admin from '../Admin';
 import RegistrationMeta from '../RegistrationMeta';
+import AnnouncementInline from 'app/components/AnnouncementInline';
 import cx from 'classnames';
 
 const InterestedButton = ({ value, onClick }) => {
@@ -146,6 +147,9 @@ export default class EventDetail extends Component {
                 onClick={onRegisterClick}
               />
             </Flex>
+
+            <h4>Send melding</h4>
+            <AnnouncementInline event={event.id} />
 
             <div
               className={styles.text}

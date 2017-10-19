@@ -49,27 +49,28 @@ export default class UserProfile extends Component {
         <Helmet title={`${user.firstName} ${user.lastName}`} />
 
         <Flex wrap className={styles.header}>
-          <ProfilePicture user={user} size={150} />
+          <Flex wrap>
+            <ProfilePicture user={user} size={150} />
 
-          <h2>{user.fullName}</h2>
+            <Flex column style={{ marginLeft: '30px' }}>
+              <h2 style={{ marginBottom: '15px' }}>{user.fullName}</h2>
 
-          <Pill>5. Datateknikk</Pill>
+              <Pill>5. Datateknikk</Pill>
+            </Flex>
+          </Flex>
+          <Card style={{ maxWidth: '300px' }}>
+            {this.renderFields()}
+            {showSettings ? (
+              <Link to={`/users/${user.username}/settings/profile`}>
+                Instillinger
+              </Link>
+            ) : (
+              ''
+            )}
+          </Card>
         </Flex>
 
         <Flex wrap className={styles.content}>
-          <div className={styles.sidebar}>
-            <Card>
-              {this.renderFields()}
-              {showSettings ? (
-                <Link to={`/users/${user.username}/settings/profile`}>
-                  Instillinger
-                </Link>
-              ) : (
-                ''
-              )}
-            </Card>
-          </div>
-
           <div className={styles.feed}>
             <h2>Recent Activity</h2>
             {feed ? (

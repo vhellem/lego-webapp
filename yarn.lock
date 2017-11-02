@@ -6824,6 +6824,12 @@ react-dropzone@^3.10.0:
     attr-accept "^1.0.3"
     prop-types "^15.5.7"
 
+react-event-timeline@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/react-event-timeline/-/react-event-timeline-1.4.0.tgz#3a2e2e779f45fe1190148b9b6d1c2c90167cdbab"
+  dependencies:
+    prop-types "^15.6.0"
+
 react-google-recaptcha@^0.9.7:
   version "0.9.7"
   resolved "https://registry.yarnpkg.com/react-google-recaptcha/-/react-google-recaptcha-0.9.7.tgz#13ad944011d02566e8bd06ee8567ace21a1d0ed6"

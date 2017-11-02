@@ -25,6 +25,7 @@ export type BaseCompanyEntity = {
   active?: boolean,
   adminComment?: string,
   companyType?: string,
+  previousStudentContacts?: Array<Object>,
   commentTarget: string,
   comments: Array<{ id: string, parent: string }>,
   // $FlowFixMe

@@ -25,6 +25,7 @@ import type { CompanySemesterEntity } from 'app/reducers/companySemesters';
 import Button from 'app/components/Button';
 import type { CompanySemesterContactedStatus } from 'app/models';
 import { ConfirmModalWithParent } from 'app/components/Modal/ConfirmModal';
+import { Timeline, TimelineEvent } from 'react-event-timeline';
 
 type Props = {
   company: CompanyEntity,
@@ -118,6 +119,20 @@ export default class BdbDetail extends Component<Props, State> {
 
     return editSemesterStatus(sendableSemester, { detail: true });
   };
+
+  previousStudentContacts = this.props.company.previousStudentContacts && (
+    <Timeline>
+      {this.props.company.previousStudentContacts.map(
+        previousStudentContact => (
+          <TimelineEvent
+            key={previousStudentContact.id}
+            title={previousStudentContact.user.fullName}
+            createdAt={previousStudentContact.start}
+          />
+        )
+      )}
+    </Timeline>
+  );
 
   render() {
     const {

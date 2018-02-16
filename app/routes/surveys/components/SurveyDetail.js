@@ -62,6 +62,7 @@ const SurveyDetail = (props: Props) => {
                     value=""
                     placeholder="Fritekst..."
                     className={styles.freeText}
+                    disabled
                   />
                 ) : (
                   <ul className={styles.detailOptions}>

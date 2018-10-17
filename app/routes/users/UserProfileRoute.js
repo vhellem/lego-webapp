@@ -12,6 +12,7 @@ import {
 import { fetchAllWithType } from 'app/actions/GroupActions';
 import { fetchUpcoming } from 'app/actions/EventActions';
 import { fetchUserFeed } from 'app/actions/FeedActions';
+import { selectFeedById, feedIdByUserId, selectFeedActivitesByFeedId } from 'app/reducers/feeds';
 import { selectUserWithGroups } from 'app/reducers/users';
 import { selectUpcomingEvents } from 'app/reducers/events';
 import { selectGroupsWithType } from 'app/reducers/groups';
@@ -22,16 +23,14 @@ import prepare from 'app/utils/prepare';
 import { LoginPage } from 'app/components/LoginForm';
 
 const loadData = ({ params: { username } }, dispatch) => {
-  return dispatch(fetchUser(username)).then(action =>
-    Promise.all([
-      dispatch(fetchUpcoming()),
-      dispatch(fetchAllWithType('klasse'))
-    ])
-  );
-  // TODO: re-enable when the user feed is fixed:
-  // .then(action =>
-  //   dispatch(fetchUserFeed(action.payload.result))
-  //  );
+  return dispatch(fetchUser(username)).then(action => {
+      return Promise.all([
+        dispatch(fetchUpcoming()),
+        dispatch(fetchAllWithType('klasse')),
+        dispatch(fetchUserFeed(action.payload.result)),
+      ])
+    }
+  )
 };
 
 const mapStateToProps = (state, props) => {
@@ -48,10 +47,10 @@ const mapStateToProps = (state, props) => {
     feed = { type: 'user', activities: [] };
     feedItems = [];
     // TODO: re-enable! see above.
-    // feed = selectFeedById(state, { feedId: feedIdByUserId(user.id) });
-    // feedItems = selectFeedActivitesByFeedId(state, {
-    //   feedId: feedIdByUserId(user.id)
-    // });
+    feed = selectFeedById(state, { feedId: feedIdByUserId(user.id) });
+    feedItems = selectFeedActivitesByFeedId(state, {
+      feedId: feedIdByUserId(user.id)
+    });
     penalties = selectPenaltyByUserId(state, { userId: user.id });
   }
 

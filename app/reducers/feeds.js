@@ -20,6 +20,7 @@ export default createEntityReducer({
         if (!feedId) {
           return state;
         }
+
         return {
           ...state,
           byId: {

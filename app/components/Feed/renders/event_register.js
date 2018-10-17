@@ -14,15 +14,14 @@ export function activityHeader(
   htmlTag: TagInfo => Element<*>
 ) {
   const latestActivity = aggregatedActivity.lastActivity;
-  const actors = aggregatedActivity.actorIds.map(actorId => {
-    return lookupContext(aggregatedActivity, actorId);
-  });
+  const actors = aggregatedActivity.actorIds.map(actorId =>
+    lookupContext(aggregatedActivity, 'users.user-' + actorId)
+  );
   const target = lookupContext(aggregatedActivity, latestActivity.target);
 
   if (!(actors.length !== 0 && target)) {
     return null;
   }
-
   const actorsRender = actors.map(actor =>
     htmlTag(contextRender[actor.contentType](actor))
   );

@@ -4,6 +4,15 @@
   color: var(--color-event-red);
   margin-right: 10px;
 }
+/*
+.star:hover {
+  display: block;
+  position: absolute;
+  background: #333;
+  color: #fff;
+  border-radius: 5px;
+  padding: 5px 15px;
+}*/
 
 .descriptionHeader {
   margin-top: 20px;

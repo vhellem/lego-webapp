@@ -34,7 +34,9 @@ const mapStateToProps = (state, props) => {
       isAbakomOnly: false,
       feedbackDescription: 'Melding til arrangører',
       pools: [],
-      unregistrationDeadline: time({ hours: 12 })
+      unregistrationDeadline: time({ hours: 12 }),
+      registrationDeadlineHours: 2,
+      registrationCloseTime: time({ hours: 20, minutes: 15 })
     },
     actionGrant,
     event: {
